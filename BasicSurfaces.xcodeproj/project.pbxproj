@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		394D94B923E8CAAA008FC934 /* BasicSurfaces.metal in Sources */ = {isa = PBXBuildFile; fileRef = 394D94B823E8CAAA008FC934 /* BasicSurfaces.metal */; };
+		39466E8823E8DCCE008C16B0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39466E8723E8DCCE008C16B0 /* Node.swift */; };
+		39466E8A23E8DD07008C16B0 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39466E8923E8DD07008C16B0 /* Cube.swift */; };
+		39466E8C23E8DD74008C16B0 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39466E8B23E8DD74008C16B0 /* Sphere.swift */; };
+		394D94B923E8CAAA008FC934 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 394D94B823E8CAAA008FC934 /* Shaders.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		394D94B823E8CAAA008FC934 /* BasicSurfaces.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BasicSurfaces.metal; sourceTree = "<group>"; };
+		39466E8723E8DCCE008C16B0 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		39466E8923E8DD07008C16B0 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+		39466E8B23E8DD74008C16B0 /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
+		394D94B823E8CAAA008FC934 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -25,7 +31,10 @@
 		394D94B723E8CAAA008FC934 /* BasicSurfaces */ = {
 			isa = PBXGroup;
 			children = (
-				394D94B823E8CAAA008FC934 /* BasicSurfaces.metal */,
+				394D94B823E8CAAA008FC934 /* Shaders.metal */,
+				39466E8723E8DCCE008C16B0 /* Node.swift */,
+				39466E8923E8DD07008C16B0 /* Cube.swift */,
+				39466E8B23E8DD74008C16B0 /* Sphere.swift */,
 			);
 			path = BasicSurfaces;
 			sourceTree = "<group>";
@@ -83,7 +92,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				394D94B923E8CAAA008FC934 /* BasicSurfaces.metal in Sources */,
+				394D94B923E8CAAA008FC934 /* Shaders.metal in Sources */,
+				39466E8823E8DCCE008C16B0 /* Node.swift in Sources */,
+				39466E8C23E8DD74008C16B0 /* Sphere.swift in Sources */,
+				39466E8A23E8DD07008C16B0 /* Cube.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
