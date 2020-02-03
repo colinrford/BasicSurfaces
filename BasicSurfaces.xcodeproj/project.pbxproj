@@ -1,0 +1,157 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		394D94B923E8CAAA008FC934 /* BasicSurfaces.metal in Sources */ = {isa = PBXBuildFile; fileRef = 394D94B823E8CAAA008FC934 /* BasicSurfaces.metal */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		394D94B823E8CAAA008FC934 /* BasicSurfaces.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BasicSurfaces.metal; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		394D94B023E8CAAA008FC934 = {
+			isa = PBXGroup;
+			children = (
+				394D94B723E8CAAA008FC934 /* BasicSurfaces */,
+			);
+			sourceTree = "<group>";
+		};
+		394D94B723E8CAAA008FC934 /* BasicSurfaces */ = {
+			isa = PBXGroup;
+			children = (
+				394D94B823E8CAAA008FC934 /* BasicSurfaces.metal */,
+			);
+			path = BasicSurfaces;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		394D94B623E8CAAA008FC934 /* BasicSurfaces */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 394D94BC23E8CAAA008FC934 /* Build configuration list for PBXNativeTarget "BasicSurfaces" */;
+			buildPhases = (
+				394D94B523E8CAAA008FC934 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BasicSurfaces;
+			productName = BasicSurfaces;
+			productType = "com.apple.product-type.metal-library";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		394D94B123E8CAAA008FC934 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Colin Ford";
+				TargetAttributes = {
+					394D94B623E8CAAA008FC934 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 394D94B423E8CAAA008FC934 /* Build configuration list for PBXProject "BasicSurfaces" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 394D94B023E8CAAA008FC934;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				394D94B623E8CAAA008FC934 /* BasicSurfaces */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		394D94B523E8CAAA008FC934 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				394D94B923E8CAAA008FC934 /* BasicSurfaces.metal in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		394D94BA23E8CAAA008FC934 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		394D94BB23E8CAAA008FC934 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		394D94BD23E8CAAA008FC934 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LJBDEYR255;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		394D94BE23E8CAAA008FC934 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LJBDEYR255;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		394D94B423E8CAAA008FC934 /* Build configuration list for PBXProject "BasicSurfaces" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				394D94BA23E8CAAA008FC934 /* Debug */,
+				394D94BB23E8CAAA008FC934 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		394D94BC23E8CAAA008FC934 /* Build configuration list for PBXNativeTarget "BasicSurfaces" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				394D94BD23E8CAAA008FC934 /* Debug */,
+				394D94BE23E8CAAA008FC934 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 394D94B123E8CAAA008FC934 /* Project object */;
+}
