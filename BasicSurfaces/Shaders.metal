@@ -11,21 +11,12 @@
 #include <simd/simd.h>
 using namespace metal;
 
-// #include "ShaderDefinitions.h"
+#include "ShaderDefinitions.h"
 
 struct VertexUniforms
 {
     simd_float4x4 modelViewMatrix;
     simd_float4x4 projectionMatrix;
-};
-
-struct Vertex {
-    vector_float4 color;
-    vector_float4 pos;
-};
-
-struct FragmentUniforms {
-    float brightness;
 };
 
 struct VertexOut
