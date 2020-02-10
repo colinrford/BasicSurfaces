@@ -13,21 +13,64 @@ import MetalKit
 class Generator {
     
     let device: MTLDevice
-    let library: MTLLibrary
+    let commandQueue: MTLCommandQueue
+    //let library: MTLLibrary
+    let computeFunctionNames: Array<String>
+    let pipelineCount: uint32
+    let dispatchQueue: DispatchQueue
+    let pipelineStates: Array<MTLComputePipelineState> // NSMutableArray ?
+    let pipelineGroup: DispatchGroup
     
-    init?(device: MTLDevice, library: MTLLibrary) {
+    //dispatch_queue_t dispatch_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+     
+    // Dispatch the render pipeline build
+    //__block NSMutableArray<id<MTLRenderPipelineState>> *pipelineStates = [[NSMutableArray alloc] initWithCapacity:pipelineCount];
+     
+    //dispatch_group_t pipelineGroup = dispatch_group_create();
+    
+    init?(device: MTLDevice, library: MTLLibrary, shaderNames: Array<String>) {
         
-        // Create pipeline for generating nodes on a sphere
-        do {
-            computePipelineStateSphere = try Renderer.buildComputePipelineSphere(device: device, library: library!)
-        } catch {
-            print("Unable to compile compute pipeline state (for sphere): \(error)")
-            return nil
+        self.device = device
+        //self.library = library
+        /*
+        dispatchQueue = dispatchQueue.global()
+        
+        computeFunctionNames = shaderNames
+        pipelineCount = length(computeFunctionNames)
+        pipelineStates = Array<MTLComputePipelineState>(pipelineCount)
+        
+        dispatchGroup = DispatchGroup.init()
+        
+        for pipelineIndex in 0..<pipelineCount {
+            
+            let computeFunction = library.makeFunction(name: computeFunctionNames[pipelineIndex])
+            
+            pipelineGroup.enter()
+            
+            dispatch_group_enter(pipelineGroup);
+            do {
+                try pipelineStates[pipelineIndex] = Generator.makeComputePipelineSphere(function: computeFunction)
+            } catch {
+                print("Unable to compile compute pipeline state (for sphere): \(error)")
+                pipelineGroup.leave()
+                return nil
+            }
+            
+            /* [_device newRenderPipelineStateWithDescriptor:pipelineDescriptor completionHandler: ^(id <MTLRenderPipelineState> newRenderPipeline, NSError *error )
+            {
+                // Add error handling if newRenderPipeline is nil
+                pipelineStates[pipelineIndex] = newRenderPipeline;
+                dispatch_group_leave(pipelineGroup);
+            }]; */
         }
+            
+        // Wait for build to complete
+        pipelineGroup.wait()
+        */
     }
     
     // Create sphere shader pipeline
-    class func buildComputePipelineSphere(device: MTLDevice, library: MTLLibrary) throws -> MTLComputePipelineState {
+    class func makeComputePipelineSphere(device: MTLDevice, library: MTLLibrary) throws -> MTLComputePipelineState {
         //
         let sphereShader = library.makeFunction(name: "sphereShaderEq")
         
