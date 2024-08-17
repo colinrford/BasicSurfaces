@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:BasicSurfaces.xcodeproj">
+      location = "self:/Users/colinford/workspace/BasicSurfaces/BasicSurfaces.xcodeproj">
    </FileRef>
 </Workspace>
