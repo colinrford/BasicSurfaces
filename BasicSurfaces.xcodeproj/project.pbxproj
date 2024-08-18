@@ -8,12 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		39DA9EBC2C703D580078A201 /* BasicSurfacesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EBB2C703D580078A201 /* BasicSurfacesApp.swift */; };
-		39DA9EBE2C703D580078A201 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EBD2C703D580078A201 /* ContentView.swift */; };
+		39DA9EBE2C703D580078A201 /* Basic3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EBD2C703D580078A201 /* Basic3DView.swift */; };
 		39DA9EC02C703D5A0078A201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39DA9EBF2C703D5A0078A201 /* Assets.xcassets */; };
 		39DA9EC32C703D5A0078A201 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39DA9EC22C703D5A0078A201 /* Preview Assets.xcassets */; };
 		39DA9ECD2C703D5A0078A201 /* BasicSurfacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9ECC2C703D5A0078A201 /* BasicSurfacesTests.swift */; };
 		39DA9ED72C703D5A0078A201 /* BasicSurfacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9ED62C703D5A0078A201 /* BasicSurfacesUITests.swift */; };
 		39DA9ED92C703D5A0078A201 /* BasicSurfacesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9ED82C703D5A0078A201 /* BasicSurfacesUITestsLaunchTests.swift */; };
+		39DA9EE52C7064070078A201 /* MetalUI in Frameworks */ = {isa = PBXBuildFile; productRef = 39DA9EE42C7064070078A201 /* MetalUI */; };
+		39DA9EE72C7064650078A201 /* Basic3DPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EE62C7064650078A201 /* Basic3DPresenter.swift */; };
+		39DA9EE92C70648B0078A201 /* BasicSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EE82C70648B0078A201 /* BasicSurface.swift */; };
+		39DA9EEB2C7064FC0078A201 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EEA2C7064FC0078A201 /* Sphere.swift */; };
+		39DA9EED2C71E5D70078A201 /* Basic3DRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EEC2C71E5D70078A201 /* Basic3DRenderer.swift */; };
+		39DA9EF12C71E7590078A201 /* sphere_generator.metal in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EF02C71E7590078A201 /* sphere_generator.metal */; };
+		39DA9EF52C71FB730078A201 /* basic_3d_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EF42C71FB730078A201 /* basic_3d_shader.metal */; };
+		39DA9EF82C7202B30078A201 /* Uniforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EF72C7202B30078A201 /* Uniforms.swift */; };
+		39DA9EFA2C7202E70078A201 /* LinAlgStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EF92C7202E70078A201 /* LinAlgStuff.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +44,8 @@
 
 /* Begin PBXFileReference section */
 		39DA9EB92C703D580078A201 /* BasicSurfaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicSurfaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		39DA9EBB2C703D580078A201 /* BasicSurfacesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSurfacesApp.swift; sourceTree = "<group>"; };
-		39DA9EBD2C703D580078A201 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		39DA9EBB2C703D580078A201 /* BasicSurfacesApp.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = BasicSurfacesApp.swift; sourceTree = "<group>"; tabWidth = 2; };
+		39DA9EBD2C703D580078A201 /* Basic3DView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Basic3DView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		39DA9EBF2C703D5A0078A201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39DA9EC22C703D5A0078A201 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		39DA9EC82C703D5A0078A201 /* BasicSurfacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicSurfacesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +53,15 @@
 		39DA9ED22C703D5A0078A201 /* BasicSurfacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicSurfacesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39DA9ED62C703D5A0078A201 /* BasicSurfacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSurfacesUITests.swift; sourceTree = "<group>"; };
 		39DA9ED82C703D5A0078A201 /* BasicSurfacesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSurfacesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		39DA9EE62C7064650078A201 /* Basic3DPresenter.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Basic3DPresenter.swift; sourceTree = "<group>"; tabWidth = 2; };
+		39DA9EE82C70648B0078A201 /* BasicSurface.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = BasicSurface.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 1; };
+		39DA9EEA2C7064FC0078A201 /* Sphere.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; tabWidth = 2; };
+		39DA9EEC2C71E5D70078A201 /* Basic3DRenderer.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Basic3DRenderer.swift; sourceTree = "<group>"; tabWidth = 2; };
+		39DA9EF02C71E7590078A201 /* sphere_generator.metal */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.metal; path = sphere_generator.metal; sourceTree = "<group>"; tabWidth = 2; };
+		39DA9EF22C71E8020078A201 /* vertex.h */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = vertex.h; sourceTree = "<group>"; tabWidth = 2; };
+		39DA9EF42C71FB730078A201 /* basic_3d_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = basic_3d_shader.metal; sourceTree = "<group>"; };
+		39DA9EF72C7202B30078A201 /* Uniforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uniforms.swift; sourceTree = "<group>"; };
+		39DA9EF92C7202E70078A201 /* LinAlgStuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinAlgStuff.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39DA9EE52C7064070078A201 /* MetalUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				39DA9EBA2C703D580078A201 /* BasicSurfaces */,
+				39DA9EEE2C71E6130078A201 /* App */,
+				39DA9EF32C71F9500078A201 /* Resources */,
+				39DA9EEF2C71E7270078A201 /* Shaders */,
+				39DA9EF62C72018D0078A201 /* Utilities */,
 				39DA9ECB2C703D5A0078A201 /* BasicSurfacesTests */,
 				39DA9ED52C703D5A0078A201 /* BasicSurfacesUITests */,
 				3938F4FC24B07FC6009154DB /* Products */,
@@ -94,13 +117,13 @@
 		39DA9EBA2C703D580078A201 /* BasicSurfaces */ = {
 			isa = PBXGroup;
 			children = (
-				39DA9EBB2C703D580078A201 /* BasicSurfacesApp.swift */,
-				39DA9EBD2C703D580078A201 /* ContentView.swift */,
-				39DA9EBF2C703D5A0078A201 /* Assets.xcassets */,
-				39DA9EC12C703D5A0078A201 /* Preview Content */,
+				39DA9EE82C70648B0078A201 /* BasicSurface.swift */,
+				39DA9EEA2C7064FC0078A201 /* Sphere.swift */,
 			);
+			indentWidth = 2;
 			path = BasicSurfaces;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		39DA9EC12C703D5A0078A201 /* Preview Content */ = {
 			isa = PBXGroup;
@@ -127,6 +150,53 @@
 			path = BasicSurfacesUITests;
 			sourceTree = "<group>";
 		};
+		39DA9EEE2C71E6130078A201 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				39DA9EE62C7064650078A201 /* Basic3DPresenter.swift */,
+				39DA9EEC2C71E5D70078A201 /* Basic3DRenderer.swift */,
+				39DA9EBB2C703D580078A201 /* BasicSurfacesApp.swift */,
+				39DA9EBD2C703D580078A201 /* Basic3DView.swift */,
+			);
+			indentWidth = 2;
+			path = App;
+			sourceTree = "<group>";
+			tabWidth = 2;
+		};
+		39DA9EEF2C71E7270078A201 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				39DA9EF22C71E8020078A201 /* vertex.h */,
+				39DA9EF42C71FB730078A201 /* basic_3d_shader.metal */,
+				39DA9EF02C71E7590078A201 /* sphere_generator.metal */,
+			);
+			indentWidth = 2;
+			path = Shaders;
+			sourceTree = "<group>";
+			tabWidth = 2;
+		};
+		39DA9EF32C71F9500078A201 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				39DA9EBF2C703D5A0078A201 /* Assets.xcassets */,
+				39DA9EC12C703D5A0078A201 /* Preview Content */,
+			);
+			indentWidth = 2;
+			path = Resources;
+			sourceTree = "<group>";
+			tabWidth = 2;
+		};
+		39DA9EF62C72018D0078A201 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				39DA9EF72C7202B30078A201 /* Uniforms.swift */,
+				39DA9EF92C7202E70078A201 /* LinAlgStuff.swift */,
+			);
+			indentWidth = 2;
+			path = Utilities;
+			sourceTree = "<group>";
+			tabWidth = 2;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +213,9 @@
 			dependencies = (
 			);
 			name = BasicSurfaces;
+			packageProductDependencies = (
+				39DA9EE42C7064070078A201 /* MetalUI */,
+			);
 			productName = BasicSurfaces;
 			productReference = 39DA9EB92C703D580078A201 /* BasicSurfaces.app */;
 			productType = "com.apple.product-type.application";
@@ -216,6 +289,9 @@
 				Base,
 			);
 			mainGroup = 394D94B023E8CAAA008FC934;
+			packageReferences = (
+				39DA9EE32C7064070078A201 /* XCLocalSwiftPackageReference "MetalUI" */,
+			);
 			productRefGroup = 3938F4FC24B07FC6009154DB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,8 +334,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39DA9EBE2C703D580078A201 /* ContentView.swift in Sources */,
+				39DA9EED2C71E5D70078A201 /* Basic3DRenderer.swift in Sources */,
+				39DA9EEB2C7064FC0078A201 /* Sphere.swift in Sources */,
+				39DA9EE92C70648B0078A201 /* BasicSurface.swift in Sources */,
+				39DA9EBE2C703D580078A201 /* Basic3DView.swift in Sources */,
+				39DA9EF52C71FB730078A201 /* basic_3d_shader.metal in Sources */,
 				39DA9EBC2C703D580078A201 /* BasicSurfacesApp.swift in Sources */,
+				39DA9EF12C71E7590078A201 /* sphere_generator.metal in Sources */,
+				39DA9EF82C7202B30078A201 /* Uniforms.swift in Sources */,
+				39DA9EE72C7064650078A201 /* Basic3DPresenter.swift in Sources */,
+				39DA9EFA2C7202E70078A201 /* LinAlgStuff.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,7 +422,7 @@
 				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "BasicSurfaces-macOS/BasicSurfaces-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
@@ -385,7 +469,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "BasicSurfaces-macOS/BasicSurfaces-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
@@ -412,7 +496,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_ASSET_PATHS = "\"BasicSurfaces/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = LJBDEYR255;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -446,6 +530,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
@@ -471,7 +556,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_ASSET_PATHS = "\"BasicSurfaces/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = LJBDEYR255;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_PREVIEWS = YES;
@@ -500,6 +585,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VALIDATE_PRODUCT = YES;
@@ -545,6 +631,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasicSurfaces.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BasicSurfaces";
@@ -585,6 +672,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasicSurfaces.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BasicSurfaces";
@@ -629,6 +717,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = BasicSurfaces;
@@ -667,6 +756,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = BasicSurfaces;
@@ -714,6 +804,20 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		39DA9EE32C7064070078A201 /* XCLocalSwiftPackageReference "MetalUI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = MetalUI;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39DA9EE42C7064070078A201 /* MetalUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MetalUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 394D94B123E8CAAA008FC934 /* Project object */;
 }

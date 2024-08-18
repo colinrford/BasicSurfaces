@@ -10,13 +10,9 @@ import SwiftUI
 
 struct Basic3DView: View {
   var body: some View {
-    VStack {
-      Image(systemName: "globe")
-        .imageScale(.large)
-        .foregroundStyle(.tint)
-      Text("Hello, world!")
+    MetalView {
+      Basic3DPresenter()
     }
-    .padding()
   }
 }
 
