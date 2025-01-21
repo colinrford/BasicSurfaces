@@ -80,8 +80,8 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     let angle = -t;
     vertexUniforms?.modelViewMatrix = makeModelViewMatrix(scale: Float(1), axis: simd_float4(1, 1, 0, 0), angle: angle, translation: simd_float3(0, 0, 5))
       
-    let ptr = fragmentUniformsBuffer?.contents().bindMemory(to: FragmentUniforms.self, capacity: 1)
-    ptr?.pointee.brightness = Float(0.5 * cos(currentTime) + 0.5)
+    //let ptr = fragmentUniformsBuffer?.contents().bindMemory(to: FragmentUniforms.self, capacity: 1)
+    //ptr?.pointee.brightness = Float(0.5 * cos(currentTime) + 0.5)
       
     currentTime += dt
   }
