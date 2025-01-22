@@ -62,10 +62,6 @@ public struct MetalView<Content>: NSViewRepresentable where Content: MetalPresen
     public func updateNSView(_ nsView: Content, context: Context) {
         handleUpdateNSView?(nsView, context)
     }
-    
-    /*public func makeCoordinator() -> Coordinator {
-        wrappedView.delegate = self
-    }*/
 }
 
 public extension MetalView {

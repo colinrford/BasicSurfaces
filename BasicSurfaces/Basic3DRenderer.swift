@@ -12,6 +12,7 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     
   var commandQueue: MTLCommandQueue?
   var renderPipelineState: MTLRenderPipelineState?
+  var depthStencilState: MTLDepthStencilState?
   var vertexBuffer: MTLBuffer?
   var vertexUniforms: VertexUniforms?
   var fragmentUniformsBuffer: MTLBuffer?
@@ -29,6 +30,7 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     
     createCommandQueue(device: device)
     createPipelineState(withLibrary: device.makeDefaultLibrary(), forDevice: device)
+    createDepthStencilState(withView: mtkView, forDevice: device)
     createBuffers(device: device)
     let modelViewMatrix = makeModelViewMatrix(scale: Float(1), axis: simd_float4(1, 1, 0, 0), angle: Float.pi, translation: simd_float3(0, 0, 5))
     //let aspect = Float(mtkView.drawableSize.width / mtkView.drawableSize.height)
@@ -50,6 +52,7 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     let fragmentFunction = library?.makeFunction(name: "basic_3d_fragment_shader")
     let renderPipelineDescriptor = MTLRenderPipelineDescriptor()
     renderPipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+    renderPipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
     renderPipelineDescriptor.vertexFunction = vertexFunction
     renderPipelineDescriptor.fragmentFunction = fragmentFunction
     
@@ -58,6 +61,13 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     } catch {
       print(error.localizedDescription)
     }
+  }
+  
+  func createDepthStencilState(withView mtkView: MTKView, forDevice device: MTLDevice) {
+    let depthStencilDescriptor = MTLDepthStencilDescriptor()
+    depthStencilDescriptor.depthCompareFunction = MTLCompareFunction.lessEqual
+    depthStencilDescriptor.isDepthWriteEnabled = true
+    depthStencilState = device.makeDepthStencilState(descriptor: depthStencilDescriptor)
   }
     
   func createBuffers(device: MTLDevice) {
@@ -72,7 +82,10 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     
     
   func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-      
+    vertexUniforms?.projectionMatrix = matrix_perspective_left_hand(fovyRadians: Float.pi / 4,
+                                                                    aspect: Float(size.width / size.height),
+                                                                    nearZ: Float(0.1),
+                                                                    farZ: Float(100.0))
   }
   
   func update(t: Float, dt: CFTimeInterval) {
@@ -91,7 +104,8 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     guard let drawable = view.currentDrawable,
           let renderPassDescriptor = view.currentRenderPassDescriptor,
           let commandQueue = commandQueue,
-          let renderPipelineState = renderPipelineState else {
+          let renderPipelineState = renderPipelineState,
+          let depthStencilState = depthStencilState else {
             return
           }
       
@@ -104,6 +118,7 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     let commandBuffer = commandQueue.makeCommandBuffer()
     let commandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
     commandEncoder?.setRenderPipelineState(renderPipelineState)
+    commandEncoder?.setDepthStencilState(depthStencilState)
     commandEncoder?.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
     commandEncoder?.setVertexBytes(&vertexUniforms, length: MemoryLayout<VertexUniforms>.stride, index: 1)
     commandEncoder?.setFragmentBuffer(fragmentUniformsBuffer, offset: 0, index: 0)
