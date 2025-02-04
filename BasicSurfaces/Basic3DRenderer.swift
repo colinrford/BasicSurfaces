@@ -9,7 +9,7 @@ import MetalUI
 import MetalKit
 
 final class Basic3DRenderer: NSObject, MetalRendering {
-    
+  
   var commandQueue: MTLCommandQueue?
   var renderPipelineState: MTLRenderPipelineState?
   var depthStencilState: MTLDepthStencilState?
@@ -22,7 +22,7 @@ final class Basic3DRenderer: NSObject, MetalRendering {
   var lastRenderTime: CFTimeInterval? = nil
   var currentTime: Double = 0
   var time: Float = 0
-    
+  
   convenience init(mtkView: MTKView, vertices: [Vertex], device: MTLDevice) {
     self.init()
     
@@ -41,11 +41,11 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     vertexUniforms = VertexUniforms(modelViewMatrix: modelViewMatrix,
                                     projectionMatrix: projectionMatrix)
   }
-    
+  
   func createCommandQueue(device: MTLDevice) {
     commandQueue = device.makeCommandQueue()
   }
-    
+  
   func createPipelineState(withLibrary library: MTLLibrary?,
                            forDevice device: MTLDevice) {
     let vertexFunction = library?.makeFunction(name: "basic_3d_vertex_shader")
@@ -69,7 +69,7 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     depthStencilDescriptor.isDepthWriteEnabled = true
     depthStencilState = device.makeDepthStencilState(descriptor: depthStencilDescriptor)
   }
-    
+  
   func createBuffers(device: MTLDevice) {
     vertexBuffer = device.makeBuffer(bytes: vertices,
                                      length: MemoryLayout<Vertex>.stride * vertices.count,
@@ -79,28 +79,28 @@ final class Basic3DRenderer: NSObject, MetalRendering {
                                                length: MemoryLayout<FragmentUniforms>.stride,
                                                options: [])
   }
-    
-    
+  
+  
   func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-    vertexUniforms?.projectionMatrix = matrix_perspective_left_hand(fovyRadians: Float.pi / 4,
+    vertexUniforms?.projectionMatrix = matrix_perspective_left_hand(fovyRadians: Float.pi / 3,
                                                                     aspect: Float(size.width / size.height),
                                                                     nearZ: Float(0.1),
                                                                     farZ: Float(100.0))
   }
   
   func update(t: Float, dt: CFTimeInterval) {
-      
+    
     let angle = -t;
     vertexUniforms?.modelViewMatrix = makeModelViewMatrix(scale: Float(1), axis: simd_float4(1, 1, 0, 0), angle: angle, translation: simd_float3(0, 0, 5))
-      
+    
     //let ptr = fragmentUniformsBuffer?.contents().bindMemory(to: FragmentUniforms.self, capacity: 1)
     //ptr?.pointee.brightness = Float(0.5 * cos(currentTime) + 0.5)
-      
+    
     currentTime += dt
   }
-    
+  
   func draw(in view: MTKView) {
-      
+    
     guard let drawable = view.currentDrawable,
           let renderPassDescriptor = view.currentRenderPassDescriptor,
           let commandQueue = commandQueue,
@@ -108,13 +108,13 @@ final class Basic3DRenderer: NSObject, MetalRendering {
           let depthStencilState = depthStencilState else {
             return
           }
-      
+    
     let systemTime = CACurrentMediaTime()
     let timeDifference = (lastRenderTime == nil) ? 0 : (systemTime - lastRenderTime!)
     lastRenderTime = systemTime
     time += 1 / Float(view.preferredFramesPerSecond)
     update(t: time, dt: timeDifference)
-      
+    
     let commandBuffer = commandQueue.makeCommandBuffer()
     let commandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
     commandEncoder?.setRenderPipelineState(renderPipelineState)

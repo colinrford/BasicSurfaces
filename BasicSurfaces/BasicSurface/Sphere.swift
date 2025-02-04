@@ -37,7 +37,8 @@ class Sphere : BasicSurface {
     let sa = 4 * Float.pi / vertexCount
     let d = sqrtf(sa)
     let m_phi = roundf(Float.pi / d)
-    let d_phi = Float.pi / m_phi, d_theta = sa / d_phi
+    let d_phi = Float.pi / m_phi
+    let d_theta = sa / d_phi
       
     var vertices = [Vertex]()
     var phi = Float(0);
@@ -51,9 +52,9 @@ class Sphere : BasicSurface {
         let x = r * sinf(phi) * cosf(theta)
         let y = r * sinf(phi) * sinf(theta)
         let z = r * cosf(phi)
-        let grayscale = (x + r) / (x + y + Float(3) * r)
-        let vertex = Vertex(pos: simd_float4(x, y, z, 1), color: simd_float4(cosf(Float(j)), grayscale / Float(j), sinf(Float(i)), 1))
-        
+        //let grayscale = (x + r) / (x + y + Float(3) * r)
+        let vertex = Vertex(pos: simd_float4(x, y, z, 1), color: simd_float4(simd_fract(phi), simd_fract(theta), abs(simd_fract(theta - phi)), 1.0))
+        //color: simd_float4(cosf(Float(j)), grayscale / Float(j), sinf(Float(i)), 1))
         vertices.append(vertex)
       }
     }
@@ -87,41 +88,41 @@ class Sphere : BasicSurface {
     
     let semaphore = DispatchSemaphore(value: 1)
       
-      // Prepare threadgroup size
-      let w = computePipelineStateSphere!.threadExecutionWidth
-      let h = computePipelineStateSphere!.maxTotalThreadsPerThreadgroup / w
-      let threadsPerThreadgroup = MTLSizeMake(w, h, 1)
-      let threadsPerGrid = MTLSize(width: Int(sphereData.m_phi), height: Int(maxM_theta), depth: 1) // Not sure what to set for height
-      
-      let ptr = buffer!.contents().assumingMemoryBound(to: Vertex.self)
-      let results = UnsafeMutableBufferPointer(start: ptr, count: Int(vertexCount))
-      // hol up
-      semaphore.wait()
-      
-      guard let commandBuffer = commandQueue!.makeCommandBuffer() else { return nil }
-      guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { return nil }
-      computeEncoder.setComputePipelineState(computePipelineStateSphere!)
-      
-      computeEncoder.setBuffer(buffer, offset: 0, index: 0)
-      computeEncoder.setBytes(&sphereData, length: MemoryLayout<SphereDataEq>.stride, index: 1)
-      computeEncoder.dispatchThreads(threadsPerGrid,
-                                     threadsPerThreadgroup: threadsPerThreadgroup)
-      
-      computeEncoder.endEncoding()
-  
-      commandBuffer.addCompletedHandler { _ in
-          semaphore.signal()
-      }
+    // Prepare threadgroup size
+    let w = computePipelineStateSphere!.threadExecutionWidth
+    let h = computePipelineStateSphere!.maxTotalThreadsPerThreadgroup / w
+    let threadsPerThreadgroup = MTLSizeMake(w, h, 1)
+    let threadsPerGrid = MTLSize(width: Int(sphereData.m_phi), height: Int(maxM_theta), depth: 1) // Not sure what to set for height
     
-      commandBuffer.commit()
-      commandBuffer.waitUntilCompleted()
-      
-      vertices.append(contentsOf: results)
-      
-      end = mach_absolute_time()
-      print("GPU time: \(Double(end - start) / Double(NSEC_PER_SEC))")
-      
-      super.init(name: "Sphere", vertices: vertices, device: device)
+    let ptr = buffer!.contents().assumingMemoryBound(to: Vertex.self)
+    let results = UnsafeMutableBufferPointer(start: ptr, count: Int(vertexCount))
+    // hol up
+    semaphore.wait()
+    
+    guard let commandBuffer = commandQueue!.makeCommandBuffer() else { return nil }
+    guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { return nil }
+    computeEncoder.setComputePipelineState(computePipelineStateSphere!)
+    
+    computeEncoder.setBuffer(buffer, offset: 0, index: 0)
+    computeEncoder.setBytes(&sphereData, length: MemoryLayout<SphereDataEq>.stride, index: 1)
+    computeEncoder.dispatchThreads(threadsPerGrid,
+                                   threadsPerThreadgroup: threadsPerThreadgroup)
+    
+    computeEncoder.endEncoding()
+
+    commandBuffer.addCompletedHandler { _ in
+      semaphore.signal()
+    }
+  
+    commandBuffer.commit()
+    commandBuffer.waitUntilCompleted()
+    
+    vertices.append(contentsOf: results)
+    
+    end = mach_absolute_time()
+    print("GPU time: \(Double(end - start) / Double(NSEC_PER_SEC))")
+    
+    super.init(name: "Sphere", vertices: vertices, device: device)
   }
   
   class func getSphereDataEq(radius: Float, vertexCount: UInt) -> SphereDataEq {
