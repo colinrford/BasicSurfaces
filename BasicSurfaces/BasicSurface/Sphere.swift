@@ -72,8 +72,7 @@ class Sphere : BasicSurface {
     let library = device.makeDefaultLibrary()
     let commandQueue = device.makeCommandQueue()
     var vertices = [Vertex]()
-    let buffer = device.makeBuffer(bytes: vertices,
-                                   length: MemoryLayout<Vertex>.stride * Int(vertexCount),
+    let buffer = device.makeBuffer(length: MemoryLayout<Vertex>.stride * Int(vertexCount),
                                    options: [])
 
     do {
