@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		396FDF472D2B8B4F00DD7903 /* BasicSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDF442D2B8B4F00DD7903 /* BasicSurface.swift */; };
 		396FDF482D2B8B4F00DD7903 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDF452D2B8B4F00DD7903 /* Sphere.swift */; };
+		397FC4742F7D9B0D00AEEF4B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397FC4732F7D9B0A00AEEF4B /* Logger.swift */; };
+		397FC4762F7DDA3400AEEF4B /* BasicSurfaces.docc in Sources */ = {isa = PBXBuildFile; fileRef = 397FC4752F7DDA3400AEEF4B /* BasicSurfaces.docc */; };
 		39DA9EBC2C703D580078A201 /* BasicSurfacesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EBB2C703D580078A201 /* BasicSurfacesApp.swift */; };
 		39DA9EBE2C703D580078A201 /* Basic3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DA9EBD2C703D580078A201 /* Basic3DView.swift */; };
 		39DA9EC02C703D5A0078A201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39DA9EBF2C703D5A0078A201 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		396FDF442D2B8B4F00DD7903 /* BasicSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSurface.swift; sourceTree = "<group>"; };
 		396FDF452D2B8B4F00DD7903 /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
+		397FC4732F7D9B0A00AEEF4B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		397FC4752F7DDA3400AEEF4B /* BasicSurfaces.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; name = BasicSurfaces.docc; path = BasicSurfaces/BasicSurfaces.docc; sourceTree = "<group>"; };
 		39DA9EB92C703D580078A201 /* BasicSurfaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicSurfaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39DA9EBB2C703D580078A201 /* BasicSurfacesApp.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = BasicSurfacesApp.swift; sourceTree = "<group>"; tabWidth = 2; };
 		39DA9EBD2C703D580078A201 /* Basic3DView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Basic3DView.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -104,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				39DA9EBA2C703D580078A201 /* BasicSurfaces */,
+				397FC4752F7DDA3400AEEF4B /* BasicSurfaces.docc */,
 				39DA9ECB2C703D5A0078A201 /* BasicSurfacesTests */,
 				39DA9ED52C703D5A0078A201 /* BasicSurfacesUITests */,
 				3938F4FC24B07FC6009154DB /* Products */,
@@ -187,6 +192,7 @@
 		39DA9EF62C72018D0078A201 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				397FC4732F7D9B0A00AEEF4B /* Logger.swift */,
 				39DA9EF72C7202B30078A201 /* Uniforms.swift */,
 				39DA9EF92C7202E70078A201 /* LinAlgStuff.swift */,
 			);
@@ -262,7 +268,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 2630;
 				ORGANIZATIONNAME = "Colin Ford";
 				TargetAttributes = {
 					39DA9EB82C703D580078A201 = {
@@ -333,11 +339,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				39DA9EED2C71E5D70078A201 /* Basic3DRenderer.swift in Sources */,
+				397FC4742F7D9B0D00AEEF4B /* Logger.swift in Sources */,
 				39DA9EBE2C703D580078A201 /* Basic3DView.swift in Sources */,
 				39DA9EF52C71FB730078A201 /* basic_3d_shader.metal in Sources */,
 				39DA9EBC2C703D580078A201 /* BasicSurfacesApp.swift in Sources */,
 				39DA9EF12C71E7590078A201 /* sphere_generator.metal in Sources */,
 				39DA9EF82C7202B30078A201 /* Uniforms.swift in Sources */,
+				397FC4762F7DDA3400AEEF4B /* BasicSurfaces.docc in Sources */,
 				396FDF472D2B8B4F00DD7903 /* BasicSurface.swift in Sources */,
 				396FDF482D2B8B4F00DD7903 /* Sphere.swift in Sources */,
 				39DA9EE72C7064650078A201 /* Basic3DPresenter.swift in Sources */,
@@ -403,6 +411,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = LJBDEYR255;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -418,6 +427,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_COMPILATION_MODE = singlefile;
@@ -453,6 +463,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = LJBDEYR255;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -467,6 +478,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -498,7 +510,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"BasicSurfaces/Resources/Preview Content\"";
-				DEVELOPMENT_TEAM = LJBDEYR255;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -511,18 +522,22 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BasicSurfaces/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Basic Surfaces";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.1;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.colinford.BasicSurfaces;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -560,7 +575,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"BasicSurfaces/Resources/Preview Content\"";
-				DEVELOPMENT_TEAM = LJBDEYR255;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -568,18 +582,22 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BasicSurfaces/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Basic Surfaces";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.1;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.colinford.BasicSurfaces;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -615,7 +633,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = LJBDEYR255;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -660,7 +677,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = LJBDEYR255;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -700,7 +716,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = LJBDEYR255;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -743,7 +758,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = LJBDEYR255;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
