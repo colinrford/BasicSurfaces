@@ -2,24 +2,76 @@
 
 ![Rotating Sphere Demo](/rotating-sphere-xcode-preview.gif)
 
-This repo serves as a proof-of-concept of using Metal to render graphics inside a SwiftUI `View`, which among other things allows for `Metal View`s (see MetalUI, either in this repository, or [here](https://github.com/colinrford/MetalUI)) to work inside Xcode previews.
+A proof-of-concept for rendering Metal graphics inside a SwiftUI
+`View`, including support for Xcode Previews. Built on top of
+[`MetalUI`](https://www.github.com/colinrford/MetalUI) (included as a
+local package in this repository).
 
-As of now (1/22/25; 12/15/25) this should just be `git clone`-able and build just fine right out of the box. If you try BasicSurfaces and find a build bug - or any kinda bug - please inform me via Github issues or email or anything along those lines.
+While intended to stay minimal, `BasicSurfaces` also demonstrates:
+- Debugging and instrumentation using Apple's tools (`OSLog`, `OSSignposter`)
+- DocC documentation (build via **Product > Build Documentation** in Xcode)
 
-What to expect of BasicSurfaces in its current state:
-- while viewing the file `Basic3DView.swift` in Xcode, an Xcode Preview shows a multicolored rotating sphere
-- building for macOS, iOS, and iPadOS targets is successful and a very simple application is produced which displays the same multicolored rotating sphere in `Basic3DView.swift`
-- you will have to alter the build settings to enable Mac Catalyst, or to alter older OS compatibility. This should work for any device that can run SwiftUI, perhaps within constraints this author is ignorant of
-- there is depth to the rotating sphere
-- the resolution is not as good as it could be
-- changing `line 32` of `Basic3DPresenter.swift`, which reads
-  ```
-  surface = Sphere(device: device)//, radius: 2, vertexCount: 10240)
-  ```
-  changes whether the sphere vertices are generated on the CPU (as-is) or the GPU (un-comment out the commented portion and the additional right-parenthesis)
-  - In both cases, the time it takes to generate the vertices is printed to the console along with where they were generated, the CPU or GPU
-  - For the unfamiliar: with Xcode Previews, there is a separate tab for prints to the console, and the console may be hidden from view. In the console, the Executables tab will show anything printed during runtime, while the Previews tab will show what's printed within an Xcode Preview
-  - The first `Sphere` initializer, `init(device: MTLDevice)`, generates vertices on the CPU and should do so without error; the second initializer `init?(device: MTLDevice, radius: Float, vertexCount: UInt)` generates vertices on the GPU and may fail (probably won't), and you'll need to add `!` or `?` in a few spots
-- un-commenting `lines 96-97` will cause the sphere to continuously change its brightness between 0.0 (none) and 1.0 (full)
+If you are interested in seeing what can be built on top of
+BasicSurfaces, check out
+[my app Surfaces](https://www.colinford.com/surfaces), available
+on Apple's App Store.
 
-For now I intend to keep this minimal, and really just keep it a proof-of-concept. Perhaps if there is interest I will expand upon it in the future.
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [What to Expect](#what-to-expect)
+- [Configuration](#configuration)
+- [Documentation](#documentation)
+
+---
+
+## Getting Started
+
+`BasicSurfaces` should be `git clone`-able and build right out of
+the box. It builds for macOS, iOS, and iPadOS. You may need to alter
+build settings to enable Mac Catalyst or adjust older OS
+compatibility. This should work for any device that can run SwiftUI.
+
+`v0.1` of `BasicSurfaces` is much more bare bones. It has everything
+needed to get up and running, but lacks documentation and lacks usage
+of e.g. `OSLog`. I added these in `v0.2` of `BasicSurfaces` so that
+someone just getting started can have a little more to chew on.
+
+If you find a build bug — or any kind of bug — please let me know via
+GitHub issues or email.
+
+## What to Expect
+
+- Opening `Basic3DView.swift` in Xcode shows a multicolored rotating sphere in the Xcode Preview canvas
+- Building and running the app displays the same rotating sphere
+- The sphere has depth (depth buffering is enabled)
+- The resolution is not as good as it could be
+
+## Configuration
+
+### CPU vs. GPU vertex generation
+
+The app includes a toggle button that switches between CPU and GPU
+sphere vertex generation at runtime. A small label in the
+bottom-right corner shows which method is active.
+
+- **CPU:** Uses `Sphere.init(device:)`, which generates vertices on the
+  CPU and should always succeed.
+- **GPU:** Uses `Sphere.init?(device:radius:vertexCount:)`, which generates
+  vertices via a Metal compute shader. If GPU generation fails, the app
+  falls back to CPU automatically.
+
+In both cases, generation time is logged to the console.
+
+### Brightness animation
+
+The app includes a toggle button (bottom-right corner) that enables a
+brightness animation, pulsing the sphere's brightness between 0.0 and
+1.0 over time using the fragment shader's brightness uniform.
+
+## Documentation
+
+Full API documentation can be built in Xcode via **Product > Build
+Documentation**. The DocC catalog covers all public types, the
+rendering pipeline, surface geometry, and the linear algebra
+utilities.
