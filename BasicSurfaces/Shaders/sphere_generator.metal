@@ -2,7 +2,7 @@
 //  sphere_generator.metal
 //  BasicSurfaces
 //
-//  Copyright © 2024 Colin Ford. All rights reserved.
+//  Copyright © 2024-2026 Colin Ford. All rights reserved.
 //
 
 #include <metal_stdlib>
@@ -10,21 +10,14 @@
 
 using namespace metal;
 
-struct SphereData {
-  float r_i;
-  float theta_j;
-  int vertexCount;
-  int sideLength;
-};
-
 struct SphereDataEq {
   float radius;
   float m_phi;
   float d_theta;
 };
 
-// For generating equidistributed points on surface of a sphere
-// This particular algorithm due to Markus Deserno, Associate Professor at CMU (as of 1/28/20)
+/// For generating equidistributed points on surface of a sphere
+/// This particular algorithm due to Markus Deserno, Associate Professor at CMU (as of 1/28/20)
 kernel void sphere_eq_generator(device Vertex* sphereVertices [[buffer(0)]],
                                 const device SphereDataEq& sphereData [[buffer(1)]],
                                 uint2 position [[thread_position_in_grid]])

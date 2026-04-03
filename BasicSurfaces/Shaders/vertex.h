@@ -2,15 +2,13 @@
 //  vertex.h
 //  BasicSurfaces
 //
-//  Copyright © 2024 Colin Ford. All rights reserved.
+//  Copyright © 2024-2026 Colin Ford. All rights reserved.
 //
 
 #ifndef vertex_h
 #define vertex_h
 
 #include <simd/simd.h>
-
-using namespace metal;
 
 struct Vertex 
 {
@@ -31,4 +29,3 @@ struct VertexOut
 };
 
 #endif /* vertex_h */
-
