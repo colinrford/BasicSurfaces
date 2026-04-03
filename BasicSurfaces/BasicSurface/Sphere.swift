@@ -21,6 +21,12 @@ struct SphereDataEq {
   var d_theta: Float
 }
 
+/// Whether the sphere was generated on the CPU or GPU.
+enum SphereGenerationMethod {
+  case cpu
+  case gpu
+}
+
 /// Specialized error(s) for Sphere.
 enum SphereError: Error {
   /// Thrown if sphere generator shader cannot be found.
@@ -32,16 +38,14 @@ enum SphereError: Error {
 ///
 /// Supports both CPU and GPU vertex generation paths.
 class Sphere : BasicSurface {
-
+  
   // MARK: - Properties
-
+  
   /// For generating sphere vertices on GPU.
-  ///
-  /// It is currently cached / stored, although as of v0.2 this is not necessary.
   private var computePipelineStateSphere : MTLComputePipelineState?
   
   // MARK: - CPU Initialization
-
+  
   /// Generates sphere vertices on the CPU using Deserno's algorithm
   /// with a hardcoded radius of 2 and approximately 10,240 vertices.
   ///
@@ -82,17 +86,15 @@ class Sphere : BasicSurface {
     }
     
     end = mach_absolute_time()
-    print("CPU time: \(Double(end - start) / Double(NSEC_PER_SEC))")
-    print("vertexCount: \(Double(vertices.count))")
     
     OSSignposter.basicSurfaces.endInterval("Sphere Generation on CPU", sphereGenCPUState)
-    Logger.basicSurfaces.info("Sphere CPU init: \(vertices.count) vertices")
+    Logger.basicSurfaces.info("Sphere CPU init: \(vertices.count) vertices in \(String(format: "%.9f", Double(end - start) / Double(NSEC_PER_SEC)))")
     
     super.init(name: "Sphere", vertices: vertices, device: device)
   }
   
   // MARK: - GPU Initialization
-
+  
   /// Generates sphere vertices on the GPU via a Metal compute shader.
   ///
   /// - Parameters:
@@ -188,8 +190,8 @@ class Sphere : BasicSurface {
     OSSignposter.basicSurfaces.endInterval("Sphere Results Copy", sphereGenCopyState)
     
     end = mach_absolute_time()
-    print("GPU time: \(Double(end - start) / Double(NSEC_PER_SEC))")
-    Logger.basicSurfaces.info("Sphere GPU init: \(vertices.count) vertices")
+    
+    Logger.basicSurfaces.info("Sphere GPU init: \(vertices.count) vertices in \(String(format: "%.9f", Double(end - start) / Double(NSEC_PER_SEC)))")
     
     super.init(name: "Sphere", vertices: vertices, device: device)
   }

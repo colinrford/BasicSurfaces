@@ -14,9 +14,9 @@ import Synchronization
 ///
 /// Conforms to `MetalRendering` from the MetalUI package.
 final class Basic3DRenderer: NSObject, MetalRendering {
-
+  
   // MARK: - Properties
-
+  
   /// Metal command queue for submitting render work.
   var commandQueue: MTLCommandQueue?
   /// Compiled vertex/fragment pipeline using `basic_3d_vertex_shader` and `basic_3d_fragment_shader`.
@@ -29,10 +29,10 @@ final class Basic3DRenderer: NSObject, MetalRendering {
   var vertexUniforms: VertexUniforms?
   /// GPU buffer for fragment-stage uniforms.
   var fragmentUniformsBuffer: MTLBuffer?
-
+  
   /// Source vertex data received at init.
   var vertices: [Vertex] = []
-
+  
   /// Timestamp of the previous frame, used to compute delta time. `nil` before the first frame.
   var lastRenderTime: CFTimeInterval? = nil
   /// Accumulated wall-clock elapsed time in seconds.
@@ -48,9 +48,29 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     get { _isFadeEnabled.load(ordering: .relaxed) }
     set { _isFadeEnabled.store(newValue, ordering: .relaxed) }
   }
-
+  
+  // MARK: - Vertex Management
+  
+  /// Replaces the current vertex data and rebuilds the GPU vertex buffer.
+  ///
+  /// - Parameters:
+  ///   - newVertices: The replacement vertex array.
+  ///   - device: The Metal device used to allocate the new buffer.
+  func replaceVertices(_ newVertices: [Vertex], device: MTLDevice) {
+    vertices = newVertices
+    guard let buffer = device.makeBuffer(bytes: vertices,
+                                         length: MemoryLayout<Vertex>.stride * vertices.count,
+                                         options: []) else {
+      Logger.renderer.fault("device.makeBuffer() for replacement vertices returned nil")
+      assertionFailure("device.makeBuffer() for replacement vertices returned nil")
+      return
+    }
+    buffer.label = "BasicSurface Vertex Buffer (replaced)"
+    vertexBuffer = buffer
+  }
+  
   // MARK: - Initialization
-
+  
   /// Creates the renderer, initializing the full Metal pipeline and initial uniforms.
   ///
   /// - Parameters:
@@ -187,7 +207,7 @@ final class Basic3DRenderer: NSObject, MetalRendering {
     } else {
       ptr?.pointee.brightness = 1.0
     }
-
+    
     currentTime += dt
   }
   

@@ -12,9 +12,9 @@ import MetalUI
 ///
 /// See ``Sphere`` for the current concrete subclass.
 class BasicSurface {
-
+  
   // MARK: - Properties
-
+  
   /// The Metal device used to create GPU resources for this surface.
   let device: MTLDevice
   /// A human-readable label used for debugging.
@@ -25,9 +25,9 @@ class BasicSurface {
   var vertices: [Vertex]
   /// Per-vertex normals.
   var normals: [simd_float4] = []
-
+  
   // MARK: - Initialization
-
+  
   /// Creates a surface with pre-computed vertex data.
   ///
   /// - Parameters:
