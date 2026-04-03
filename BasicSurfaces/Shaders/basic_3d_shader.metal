@@ -2,7 +2,7 @@
 //  basic_3d_shader.metal
 //  BasicSurfaces
 //
-//  Copyright © 2024 Colin Ford. All rights reserved.
+//  Copyright © 2024-2026 Colin Ford. All rights reserved.
 //
 
 #include <metal_stdlib>
@@ -12,7 +12,9 @@
 using namespace metal;
 
 struct FragmentUniforms
-{ float brightness; };
+{
+  float brightness;
+};
 
 vertex VertexOut basic_3d_vertex_shader(const device Vertex* vertexArray [[buffer(0)]],
                                         const device VertexUniforms& uniforms [[buffer(1)]],
@@ -21,7 +23,7 @@ vertex VertexOut basic_3d_vertex_shader(const device Vertex* vertexArray [[buffe
   Vertex in = vertexArray[vid];
   VertexOut out;
 
-  out.pos = float4(normalize((uniforms.projectionMatrix * uniforms.modelViewMatrix * in.pos).xyz), 1); // heh
+  out.pos = uniforms.projectionMatrix * uniforms.modelViewMatrix * in.pos;
   out.color = in.color;
   
   return out;
