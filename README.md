@@ -43,9 +43,9 @@ GitHub issues or email.
 ## What to Expect
 
 - Opening `Basic3DView.swift` in Xcode shows a multicolored rotating sphere in the Xcode Preview canvas
-- Building and running the app displays the same rotating sphere
-- The sphere has depth (depth buffering is enabled)
-- The resolution is not as good as it could be
+- Building and running the app displays the same rotating sphere, rendered at a constant 60 fps
+- The sphere has depth / depth buffering is enabled
+- In the bottom right of the screen there are two buttons, described in detail below
 
 ## Configuration
 
